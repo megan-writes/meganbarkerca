@@ -9,7 +9,7 @@ const allPosts = await getCollection('blog', ({ data }) =>
 const posts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<Layout title="Pseudorandom thoughts" description="Security, engineering, grammar, and whatever else earns the words — by Megan Barker.">
+<Layout title="Pseudorandom thoughts" description="Security, engineering, tech, grammar, and whatever else earns the words.">
 
   <!-- Header -->
   <div class="bg-slate-900 text-white border-b border-slate-800">
