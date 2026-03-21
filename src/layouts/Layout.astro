@@ -10,7 +10,9 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Security engineer. Technical writer. Building secure systems and making them accessible to everyone." } = Astro.props;
+const { title, description = "Most security engineers can't write. Most technical writers can't build. I do both." } = Astro.props;
+const ogTitle = title === 'Home' ? 'Megan Barker' : `${title} | Megan Barker`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -19,12 +21,23 @@ const { title, description = "Security engineer. Technical writer. Building secu
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Megan Barker" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph — controls how the link looks when shared on Slack, LinkedIn, etc. -->
-    <meta property="og:title" content={title} />
+    <!-- Open Graph -->
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Megan Barker" />
+    <meta property="og:image" content={new URL('/og-image.png', Astro.site)} />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-image.png', Astro.site)} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
