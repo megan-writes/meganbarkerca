@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+
+const posts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<Layout title="Pseudorandom thoughts" description="Security, engineering, grammar, and whatever else earns the words — by Megan Barker.">
+
+  <!-- Header -->
+  <div class="bg-slate-900 text-white border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-3">Blog</p>
+      <h1 class="text-4xl font-bold mb-4">Pseudorandom thoughts</h1>
+      <p class="text-lg text-slate-400 max-w-2xl">
+        Security, engineering, tech, grammar, and whatever else earns the words.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    {posts.length === 0 ? (
+      <p class="text-slate-400 font-mono text-sm">No posts yet — check back soon.</p>
+    ) : (
+      <ul class="space-y-px">
+        {posts.map(post => (
+          <li>
+            <a
+              href={`/blog/${post.id}`}
+              class="group flex items-start justify-between gap-8 py-6 border-b border-slate-100 hover:border-slate-200 transition-colors"
+            >
+              <div>
+                <h2 class="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors mb-1">
+                  {post.data.title}
+                  {post.data.draft && (
+                    <span class="ml-2 font-mono text-xs text-amber-500 font-normal">draft</span>
+                  )}
+                </h2>
+                <p class="text-slate-500 leading-relaxed text-sm mb-3">{post.data.description}</p>
+                {post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {post.data.tags.map(tag => (
+                      <span class="font-mono text-xs text-slate-400 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <time class="font-mono text-xs text-slate-400 shrink-0 mt-1" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <!-- RSS link -->
+    <div class="mt-12">
+      <a href="/rss.xml" class="font-mono text-xs text-slate-400 hover:text-blue-600 transition-colors">
+        RSS feed →
+      </a>
+    </div>
+  </div>
+
+</Layout>
