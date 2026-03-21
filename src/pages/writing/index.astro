@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const longform = [
+  { title: "How we improved search results in 1Password", url: "https://blog.1password.com/how-we-improved-search-results/" },
+  { title: "How 1Password protects information on your devices (and when it can't)", url: "https://blog.1password.com/how-1password-protects-information/" },
+  { title: "Will quantum computers break your passkeys?", url: "https://blog.1password.com/quantum-computers-passkeys/" },
+  { title: "AI can crack your passwords (and other very old news)", url: "https://blog.1password.com/ai-crack-passwords/" },
+  { title: "Is it wrong to store passwords and one-time codes together?", url: "https://blog.1password.com/passwords-one-time-codes-together/" },
+  { title: "Passkeys vs 2FA and TOTP: What are the differences?", url: "https://blog.1password.com/passkeys-vs-2fa-totp/" },
+  { title: "We can do better: The tech industry and its response to data breaches", url: "https://blog.1password.com/tech-industry-data-breach-response/" },
+  { title: "Passkeys vs passwords: What are the differences?", url: "https://blog.1password.com/passkeys-vs-passwords/" },
+  { title: "How ignoring the PoLP and password123 can cost you $4.4 million", url: "https://blog.1password.com/polp-password123-cost/" },
+  { title: "Randomness (or things humans do poorly)", url: "https://blog.1password.com/randomness/" },
+  { title: "Guiding principles: How least privilege leads to more security", url: "https://blog.1password.com/least-privilege-security/" },
+];
+
+const uxcopy = [
+  { title: "About the security of 1Password Autofill in your browser", url: "https://support.1password.com/autofill-browser-security/" },
+  { title: "About the security and privacy of adding a location to 1Password items", url: "https://support.1password.com/location-security/" },
+  { title: "About the security of using your device to unlock 1Password", url: "https://support.1password.com/device-unlock-security/" },
+  { title: "About the security of signing in to 1Password with a QR code", url: "https://support.1password.com/qr-code-security/" },
+  { title: "About the security of recovery codes in 1Password", url: "https://support.1password.com/recovery-codes-security/" },
+  { title: "About the security of unlocking 1Password with a passkey", url: "https://support.1password.com/passkey-unlock-security/" },
+  { title: "About 1Password SCIM bridge security", url: "https://support.1password.com/scim-security/" },
+  { title: "How to choose a good account password", url: "https://support.1password.com/strong-account-password/" },
+];
+---
+
+<Layout title="Writing" description="Technical content on security, passkeys, and privacy, written for human beings.">
+
+  <!-- Header -->
+  <div class="bg-slate-900 text-white border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-3">Portfolio</p>
+      <h1 class="text-4xl font-bold mb-4">Writing</h1>
+      <p class="text-lg text-slate-400 max-w-2xl mb-8">
+        Writing content and documentation at the intersection of technical depth and plain language.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {["Passkeys", "Zero-knowledge", "Password security", "Authentication", "Privacy", "Cryptography"].map((tag) => (
+          <span class="font-mono text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 py-16 space-y-8">
+
+    <!-- Long-form card -->
+    <article class="border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="bg-slate-900 px-8 py-6 text-white flex items-center justify-between">
+        <h2 class="font-semibold">Long-form content</h2>
+        <span class="font-mono text-xs text-slate-500">{longform.length} articles</span>
+      </div>
+      <div class="px-4 py-4">
+        <ul class="space-y-1">
+          {longform.map((item) => (
+            <li>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center justify-between gap-4 px-4 py-3 rounded-xl border border-transparent hover:border-slate-100 hover:bg-slate-50 transition-all"
+              >
+                <span class="text-slate-700 group-hover:text-blue-600 leading-snug transition-colors">{item.title}</span>
+                <span class="font-mono text-base text-slate-400 group-hover:text-blue-500 shrink-0 transition-colors">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+
+    <!-- UX & support copy card -->
+    <article class="border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="bg-slate-900 px-8 py-6 text-white flex items-center justify-between">
+        <h2 class="font-semibold">UX &amp; support copy</h2>
+        <span class="font-mono text-xs text-slate-500">{uxcopy.length} articles</span>
+      </div>
+      <div class="px-4 py-4">
+        <ul class="space-y-1">
+          {uxcopy.map((item) => (
+            <li>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center justify-between gap-4 px-4 py-3 rounded-xl border border-transparent hover:border-slate-100 hover:bg-slate-50 transition-all"
+              >
+                <span class="text-slate-700 group-hover:text-blue-600 leading-snug transition-colors">{item.title}</span>
+                <span class="font-mono text-base text-slate-400 group-hover:text-blue-500 shrink-0 transition-colors">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</Layout>

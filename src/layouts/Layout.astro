@@ -1,0 +1,75 @@
+---
+// Layout.astro — the shared wrapper for every page.
+// The `---` fences are the "frontmatter" block: this is where you write
+// TypeScript/JavaScript that runs at build time (not in the browser).
+// Props let pages pass data in — here, just the page title.
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Security engineer. Technical writer. Building secure systems and making them accessible to everyone." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph — controls how the link looks when shared on Slack, LinkedIn, etc. -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <title>{title} | Megan Barker</title>
+
+    <style>
+      /* Inter for body text, JetBrains Mono for code elements */
+      body { font-family: 'Inter', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+  </head>
+
+  <body class="bg-white text-slate-800 antialiased">
+
+    <!-- Nav -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm">
+      <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 font-mono text-sm font-medium text-slate-900 hover:text-blue-600 transition-colors">
+          <span class="inline-block w-2 h-2 rounded-sm bg-blue-600"></span>
+          megan barker
+        </a>
+        <ul class="flex items-center gap-8 text-sm font-medium text-slate-500">
+          <li><a href="/writing" class="hover:text-slate-900 transition-colors">Writing</a></li>
+          <li><a href="/engineering" class="hover:text-slate-900 transition-colors">Engineering</a></li>
+          <li><a href="/about" class="hover:text-slate-900 transition-colors">About</a></li>
+        </ul>
+      </nav>
+      <div class="h-px bg-gradient-to-r from-blue-600 via-blue-400 to-amber-400 opacity-50"></div>
+    </header>
+
+    <!-- Page content is slotted in here — <slot /> is Astro's version of {children} in React -->
+    <main class="pt-16">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-100 mt-24">
+      <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
+        <span>© {new Date().getFullYear()} Megan Barker</span>
+        <a href="mailto:&#109;&#101;&#64;&#109;&#101;&#103;&#97;&#110;&#98;&#97;&#114;&#107;&#101;&#114;&#46;&#99;&#97;" class="hover:text-blue-600 transition-colors">Email me</a>
+      </div>
+    </footer>
+
+  </body>
+</html>

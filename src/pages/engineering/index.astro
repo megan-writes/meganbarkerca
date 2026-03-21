@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Engineering" description="Security engineering work: publishing platforms, vulnerability tooling, and systems built at the intersection of security and user experience.">
+
+  <!-- Header -->
+  <div class="bg-slate-900 text-white border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-3">Portfolio</p>
+      <h1 class="text-4xl font-bold mb-4">Engineering</h1>
+      <p class="text-lg text-slate-400 max-w-2xl">
+        Building tools and platforms at the intersection of security and user experience.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 py-16">
+
+    <!-- Case study: Whitepaper platform -->
+    <article class="mb-8 border border-slate-200 rounded-2xl overflow-hidden">
+
+      <!-- Card header -->
+      <div class="bg-slate-900 px-8 py-10 text-white">
+        <p class="font-mono text-xs text-blue-400 uppercase tracking-widest mb-3">Case study</p>
+        <h2 class="text-2xl font-bold mb-3">Security Design White Paper Platform</h2>
+        <p class="text-slate-300 max-w-2xl leading-relaxed">
+          An independently built publishing pipeline that produces the official 1Password Security Design
+          White Paper. It's a living document that ships like software.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-6">
+          {["R", "RMarkdown", "bookdown", "LaTeX", "HTML/CSS", "GitHub Pages", "GitHub Actions"].map((tag) => (
+            <span class="font-mono text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Case study body -->
+      <div class="px-8 py-10 space-y-10">
+
+        <!-- The problem -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">The problem</h3>
+          <p class="text-slate-600 leading-relaxed">
+            A security white paper for a company like 1Password can't be a static PDF that lives in a drawer.
+            It needs to be versioned, auditable, searchable, multi-format (HTML and PDF), and maintainable
+            without a publishing team. The existing document (and its related processes) didn't meet that bar, so I built a new one.
+          </p>
+        </div>
+
+        <!-- What I built -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">What I built</h3>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            An end-to-end publishing pipeline, independently designed and implemented:
+          </p>
+          <ul class="space-y-3 text-slate-600">
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">01</span>
+              <span><strong class="text-slate-800">Source layer:</strong> R + RMarkdown for structured, version-controlled authoring. Every chapter is a
+              plain-text file that's diffable, reviewable, and editable without proprietary tooling.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">02</span>
+              <span><strong class="text-slate-800">Typesetting:</strong> Bookdown orchestrates multi-chapter output; LaTeX handles mathematical notation
+              for cryptographic formulas (SRP protocol math, key derivation proofs) via MathJax.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">03</span>
+              <span><strong class="text-slate-800">Output formats:</strong> A single source produces a multi-page HTML site with in-document
+              search (Fuse.js) and an interactive glossary, and a downloadable PDF.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">04</span>
+              <span><strong class="text-slate-800">CI/CD:</strong> Secured GitHub Actions help automate the build and deployment. No manual export or
+              upload is required to publish updates.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">05</span>
+              <span><strong class="text-slate-800">Hosting + URL:</strong> Deployed to GitHub Pages under the AgileBits org with a clean, short canonical
+              URL via the company's domain.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The result -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">The result</h3>
+          <p class="text-slate-600 leading-relaxed">
+            An interactive public document that covers AES-256-GCM vault encryption, two-secret
+            key derivation, SRP-based authentication, Secrets Automation with JWT
+            bearer tokens, and a candid limitations section. The cryptographic architecture is studied by security researchers,
+            technical decision makers, and users who want to audit 1Password's claims rather than take them on faith.
+          </p>
+        </div>
+
+        <!-- Link -->
+        <div class="pt-2">
+          <a
+            href="https://1pw.ca/whitepaper"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
+          >
+            View the white paper
+            <span class="font-mono text-slate-400">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- Coming soon: triage tool -->
+    <article class="border border-dashed border-slate-300 rounded-2xl px-8 py-10">
+      <p class="font-mono text-xs text-slate-600 uppercase tracking-widest mb-3">In progress</p>
+      <h2 class="text-xl font-bold text-slate-900 mb-3">Vulnerability Triage Application</h2>
+      <p class="text-slate-500 leading-relaxed max-w-2xl">
+        When my team couldn't find a tool that properly addressed its vulnerability intake and management needs, I decided to build one. An internal React/Go application that's helping engineers triage vulnerability findings.
+        It's reducing noise, surfacing signal, and shortening the time from detection to decision.
+        More details coming soon.
+      </p>
+      <div class="flex flex-wrap gap-2 mt-5">
+        {["Go", "AWS", "In progress"].map((tag) => (
+          <span class="font-mono text-xs bg-slate-50 text-slate-400 border border-slate-200 px-2.5 py-1 rounded-md">{tag}</span>
+        ))}
+      </div>
+    </article>
+
+  </div>
+</Layout>

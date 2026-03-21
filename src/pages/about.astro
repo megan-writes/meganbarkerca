@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const headshot = '/megan-barker.webp';
+const headshotExists = true;
+---
+
+<Layout title="About" description="Security engineer and technical writer based in Ontario, Canada.">
+
+  <!-- Header -->
+  <div class="bg-slate-900 text-white border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-3">About</p>
+      <h1 class="text-4xl font-bold mb-4">The arc</h1>
+      <p class="text-lg text-slate-400 max-w-2xl">
+        Security engineer and technical writer based in Ontario, Canada.
+      </p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-5xl mx-auto px-6 py-20">
+
+    <!-- Two-column layout: photo left, text right (stacks on mobile) -->
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16 items-start">
+
+      <!-- Photo column -->
+      <div class="lg:sticky lg:top-28">
+        {headshotExists ? (
+          <img
+            src={headshot}
+            alt="Megan Barker"
+            class="w-full max-w-xs mx-auto lg:mx-0 rounded-2xl shadow-lg grayscale"
+          />
+        ) : (
+          <!-- Placeholder shown until you drop the image in -->
+          <div class="w-full max-w-xs mx-auto lg:mx-0 rounded-2xl bg-gradient-to-br from-slate-200 to-amber-100 aspect-[3/4] flex items-center justify-center">
+            <p class="font-mono text-sm text-slate-400 text-center px-4">
+              drop megan-barker.webp<br />into /public/
+            </p>
+          </div>
+        )}
+
+        <!-- Contact links -->
+        <div class="mt-6 max-w-xs mx-auto lg:mx-0 flex flex-col gap-2">
+          <a
+            href="mailto:&#109;&#101;&#64;&#109;&#101;&#103;&#97;&#110;&#98;&#97;&#114;&#107;&#101;&#114;&#46;&#99;&#97;"
+            class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+          >
+            Email
+          </a>
+          <a
+            href="https://linkedin.com/in/megan-writes/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Text column -->
+      <div>
+        <div class="space-y-6 text-slate-600 leading-relaxed">
+
+          <p>
+            I've been a writer (nearly) my entire life. I was the kid who read the dictionary and thesaurus for fun and wrote chaptered novels
+            when a short story was the assignment. Eventually my love of words shaped my career as a Security Specialist because documentation wasn't a maligned side task, it was my bread and butter.
+          </p>
+
+          <p>
+            For years, I translated deeply technical concepts into clear prose: passkeys, zero-knowledge architecture,
+            the principle of least privilege, quantum threats to modern authentication. I became very good at making
+            difficult concepts accessible.
+          </p>
+
+          <p class="text-slate-800 font-medium text-xl">
+            Then I was promoted to Security Engineer.
+          </p>
+
+          <p>
+            Now I'm building the systems I used to
+            explain. I write R, Markdown, and Go. I'm designing CI/CD pipelines and deploying on AWS. I think about
+            authentication flows not just as a writer documenting them, but as an engineer responsible for them.
+          </p>
+
+          <p>
+            I live in Ontario, Canada with my son and our rescued bully, Sky.
+          </p>
+
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-100 flex flex-wrap gap-4">
+          <a href="/engineering" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">
+            See the engineering work
+          </a>
+          <a href="/writing" class="border border-slate-200 text-slate-600 px-6 py-3 rounded-lg font-medium hover:border-slate-400 hover:text-slate-900 transition-colors">
+            Read the writing
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
