@@ -1,0 +1,9 @@
+Contact: mailto:me@meganbarker.ca
+Expires: 2028-03-22T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://meganbarker.ca/.well-known/security.txt
+
+# This personal portfolio site has a low attack surface but I 
+# appreciate your due diligence. 
+# Please email me before disclosing publicly.
+# I'll respond promptly... seriously.

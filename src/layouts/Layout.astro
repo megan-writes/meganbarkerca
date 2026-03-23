@@ -46,11 +46,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title} | Megan Barker</title>
 
-    <style>
-      /* Inter for body text, JetBrains Mono for code elements */
-      body { font-family: 'Inter', sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-    </style>
   </head>
 
   <body class="bg-white text-slate-800 antialiased">
@@ -91,17 +86,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <div class="h-px bg-gradient-to-r from-blue-600 via-blue-400 to-amber-400 opacity-50"></div>
     </header>
 
-    <script>
-      const toggle = document.getElementById('menu-toggle');
-      const menu = document.getElementById('mobile-menu');
-      const iconOpen = document.getElementById('icon-open');
-      const iconClose = document.getElementById('icon-close');
-      toggle?.addEventListener('click', () => {
-        menu?.classList.toggle('hidden');
-        iconOpen?.classList.toggle('hidden');
-        iconClose?.classList.toggle('hidden');
-      });
-    </script>
+    <script src="/nav.js" defer is:inline></script>
 
     <!-- Page content is slotted in here — <slot /> is Astro's version of {children} in React -->
     <main class="pt-16">
