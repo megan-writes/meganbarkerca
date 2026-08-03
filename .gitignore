@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# personal editor/tooling config
+.vscode/settings.json
+.claude/launch.json
