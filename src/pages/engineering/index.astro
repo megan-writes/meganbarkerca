@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Engineering" description="Security engineering work: publishing platforms, vulnerability tooling, and systems built at the intersection of security and user experience.">
+<Layout title="Engineering" description="Security engineering work: AI-powered code review pipelines, publishing platforms, vulnerability tooling, and systems built at the intersection of security and user experience.">
 
   <!-- Header -->
   <div class="bg-slate-900 text-white border-b border-slate-800">
@@ -17,6 +17,126 @@ import Layout from '../../layouts/Layout.astro';
 
   <div class="max-w-5xl mx-auto px-6 py-16">
 
+    <!-- Case study: SAGE -->
+    <article class="mb-8 border border-slate-200 rounded-2xl overflow-hidden">
+
+      <!-- Card header -->
+      <div class="bg-slate-900 px-8 py-10 text-white">
+        <p class="font-mono text-xs text-blue-400 uppercase tracking-widest mb-3">Case study</p>
+        <h2 class="text-2xl font-bold mb-3">AI-Powered Security Review Pipeline</h2>
+        <p class="text-slate-300 max-w-2xl leading-relaxed">
+          A multi-model security review pipeline that reads 1Password pull request diffs, grounded in five years of the team’s own review history and a compressed map of the codebase it’s reviewing.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-6">
+          {["Go", "LLM orchestration", "GitHub Actions", "Map-reduce", "SHA-256", "Prompt injection defense", "AppSec"].map((tag) => (
+            <span class="font-mono text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Case study body -->
+      <div class="px-8 py-10 space-y-10">
+
+        <!-- The problem -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">The problem</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Product Security reviewed pull requests by hand, on recurring calls. The reviews were thorough and
+            they caught real issues, but PR volume kept climbing as the company grew and engineers adopted AI
+            coding assistants. Those reviews cost the team countless hours every month, much of it spent on
+            vulnerability patterns they had already seen many times. Manual review couldn’t keep pace with that
+            kind of growth.
+          </p>
+        </div>
+
+        <!-- What I built -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">What I built</h3>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            SAGE (Security Analysis Guidance Engine), an automated review pipeline that encodes the team’s
+            institutional knowledge and applies it to PR diffs:
+          </p>
+          <ul class="space-y-3 text-slate-600">
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">01</span>
+              <span><strong class="text-slate-800">Ruleset:</strong> Nearly 9,000 PRs across five years and five languages
+              (Rust, Go, Kotlin, TypeScript, Swift), deduplicated with LLMs into 8,343 clean reviews and
+              distilled into a ruleset spanning 16 vulnerability categories. It grew from 171 rules
+              at v0 to 343 at v1.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">02</span>
+              <span><strong class="text-slate-800">Three-stage adversarial pipeline:</strong> A fast, cost-efficient <em>Finder</em> optimized for recall;
+              a <em>Critic</em> running a frontier reasoning model from a different vendor to attack each finding;
+              and a <em>Judge</em> that renders the final verdict: confirmed, false positive, or needs review.
+              Splitting providers keeps one model’s blind spots from becoming the pipeline’s.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">03</span>
+              <span><strong class="text-slate-800">Vendor-agnostic harness:</strong> A Go <code class="font-mono text-sm">llm.Client</code> interface with
+              per-stage model profiles, structured JSON output, and prompt injection detection, so models can be
+              swapped as they improve without touching the pipeline.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">04</span>
+              <span><strong class="text-slate-800">Delivery:</strong> A GitHub Action that posts line-specific comments
+              directly on the PR, backed by an activity log that tracks scan history and false positives over time.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">05</span>
+              <span><strong class="text-slate-800">SuperSAGE context layer:</strong> 1Password monorepos are far too large for any context window, so a
+              map-reduce pass summarizes each directory into a <code class="font-mono text-sm">SCAFFOLDING.md</code> file
+              containing sensitivity ratings, attack surfaces, trust boundaries, and file summaries. Those summaries
+              fold upward, child into parent, to the root. The result is roughly 30&times; smaller than the source it describes.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-blue-500 shrink-0 mt-0.5">06</span>
+              <span><strong class="text-slate-800">Deterministic change detection:</strong> LLMs rarely produce the same text twice, and
+              reworded summaries would cascade phantom diffs up the whole tree. So the Go harness hashes a small,
+              fixed set of structural facts with SHA-256 (the files present, their sensitivity ratings, and
+              trust-boundary designations) and compares only those. Prose changes are ignored; real structural changes aren’t.
+              Only directories with genuine code changes are regenerated.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The result -->
+        <div>
+          <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">The result</h3>
+          <p class="text-slate-600 leading-relaxed">
+            On a cryptographic PR used as an early benchmark, SAGE surfaced 6/6 true positives, including issues
+            human reviewers initially missed, at an average cost of $0.47 USD per scan. The context map refreshes every
+            night for a few dollars, so reviews reason about a diff in light of the code around it rather than in
+            isolation. It saves the Product Security team hours of review time every week, and the knowledge it
+            applies no longer lives only in the heads of the people who happened to attend the call.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a
+            href="https://1password.com/blog/scaling-security-reviews-ai-powered-pipeline"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
+          >
+            Part 1: Building the pipeline
+            <span class="font-mono text-slate-400">↗</span>
+          </a>
+          <a
+            href="https://1password.com/blog/scaling-security-reviews-solving-context-and-nondeterminism"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 border border-slate-300 text-slate-700 px-5 py-2.5 rounded-lg text-sm font-medium hover:border-slate-400 hover:text-slate-900 transition-colors"
+          >
+            Part 2: Context &amp; nondeterminism
+            <span class="font-mono text-slate-400">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </article>
+
     <!-- Case study: Whitepaper platform -->
     <article class="mb-8 border border-slate-200 rounded-2xl overflow-hidden">
 
@@ -26,7 +146,7 @@ import Layout from '../../layouts/Layout.astro';
         <h2 class="text-2xl font-bold mb-3">Security Design White Paper Platform</h2>
         <p class="text-slate-300 max-w-2xl leading-relaxed">
           An independently built publishing pipeline that produces the official 1Password Security Design
-          White Paper. It's a living document that ships like software.
+          White Paper. It’s a living document that ships like software.
         </p>
         <div class="flex flex-wrap gap-2 mt-6">
           {["R", "RMarkdown", "bookdown", "LaTeX", "HTML/CSS", "GitHub Pages", "GitHub Actions"].map((tag) => (
@@ -42,9 +162,9 @@ import Layout from '../../layouts/Layout.astro';
         <div>
           <h3 class="text-xs font-mono font-medium text-slate-600 uppercase tracking-widest mb-4">The problem</h3>
           <p class="text-slate-600 leading-relaxed">
-            A security white paper for a company like 1Password can't be a static PDF that lives in a drawer.
+            A security white paper for a company like 1Password can’t be a static PDF that lives in a drawer.
             It needs to be versioned, auditable, searchable, multi-format (HTML and PDF), and maintainable
-            without a publishing team. The existing document (and its related processes) didn't meet that bar, so I built a new one.
+            without a publishing team. The existing document (and its related processes) didn’t meet that bar, so I built a new one.
           </p>
         </div>
 
@@ -58,7 +178,7 @@ import Layout from '../../layouts/Layout.astro';
             <li class="flex gap-3">
               <span class="font-mono text-blue-500 shrink-0 mt-0.5">01</span>
               <span><strong class="text-slate-800">Source layer:</strong> R + RMarkdown for structured, version-controlled authoring. Every chapter is a
-              plain-text file that's diffable, reviewable, and editable without proprietary tooling.</span>
+              plain-text file that’s diffable, reviewable, and editable without proprietary tooling.</span>
             </li>
             <li class="flex gap-3">
               <span class="font-mono text-blue-500 shrink-0 mt-0.5">02</span>
@@ -78,7 +198,7 @@ import Layout from '../../layouts/Layout.astro';
             <li class="flex gap-3">
               <span class="font-mono text-blue-500 shrink-0 mt-0.5">05</span>
               <span><strong class="text-slate-800">Hosting + URL:</strong> Deployed to GitHub Pages under the AgileBits org with a clean, short canonical
-              URL via the company's domain.</span>
+              URL via the company’s domain.</span>
             </li>
           </ul>
         </div>
@@ -90,7 +210,7 @@ import Layout from '../../layouts/Layout.astro';
             An interactive public document that covers AES-256-GCM vault encryption, two-secret
             key derivation, SRP-based authentication, Secrets Automation with JWT
             bearer tokens, and a candid limitations section. The cryptographic architecture is studied by security researchers,
-            technical decision makers, and users who want to audit 1Password's claims rather than take them on faith.
+            technical decision makers, and users who want to audit 1Password’s claims rather than take them on faith.
           </p>
         </div>
 
@@ -115,8 +235,8 @@ import Layout from '../../layouts/Layout.astro';
       <p class="font-mono text-xs text-slate-600 uppercase tracking-widest mb-3">In progress</p>
       <h2 class="text-xl font-bold text-slate-900 mb-3">Vulnerability Triage Application</h2>
       <p class="text-slate-500 leading-relaxed max-w-2xl">
-        When my team couldn't find a tool that properly addressed its vulnerability intake and management needs, I decided to build one. An internal React/Go application that's helping engineers triage vulnerability findings.
-        It's reducing noise, surfacing signal, and shortening the time from detection to decision.
+        When my team couldn’t find a tool that properly addressed its vulnerability intake and management needs, I decided to build one. An internal React/Go application that’s helping engineers triage vulnerability findings.
+        It’s reducing noise, surfacing signal, and shortening the time from detection to decision.
         More details coming soon.
       </p>
       <div class="flex flex-wrap gap-2 mt-5">

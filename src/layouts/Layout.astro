@@ -10,7 +10,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Most security engineers can't write. Most technical writers can't build. I do both." } = Astro.props;
+const { title, description = "Most security engineers can’t write. Most technical writers can’t build. I do both." } = Astro.props;
 const ogTitle = title === 'Home' ? 'Megan Barker' : `${title} | Megan Barker`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -88,7 +88,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script src="/nav.js" defer is:inline></script>
 
-    <!-- Page content is slotted in here — <slot /> is Astro's version of {children} in React -->
+    <!-- Page content is slotted in here — <slot /> is Astro’s version of {children} in React -->
     <main class="pt-16">
       <slot />
     </main>

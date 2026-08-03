@@ -2,10 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 
 const headshot = '/megan-barker.webp';
-const headshotExists = true;
 ---
 
-<Layout title="About" description="Security engineer and technical writer based in Ontario, Canada.">
+<Layout title="About" description="Security engineer and technical writer based in Ontario, Canada, building AI-powered security tooling.">
 
   <!-- Header -->
   <div class="bg-slate-900 text-white border-b border-slate-800">
@@ -26,20 +25,13 @@ const headshotExists = true;
 
       <!-- Photo column -->
       <div class="lg:sticky lg:top-28">
-        {headshotExists ? (
-          <img
-            src={headshot}
-            alt="Megan Barker"
-            class="w-full max-w-xs mx-auto lg:mx-0 rounded-2xl shadow-lg grayscale"
-          />
-        ) : (
-          <!-- Placeholder shown until you drop the image in -->
-          <div class="w-full max-w-xs mx-auto lg:mx-0 rounded-2xl bg-gradient-to-br from-slate-200 to-amber-100 aspect-[3/4] flex items-center justify-center">
-            <p class="font-mono text-sm text-slate-400 text-center px-4">
-              drop megan-barker.webp<br />into /public/
-            </p>
-          </div>
-        )}
+        <img
+          src={headshot}
+          alt="Megan Barker"
+          width="2216"
+          height="1800"
+          class="w-full max-w-xs mx-auto lg:mx-0 rounded-2xl shadow-lg grayscale"
+        />
 
         <!-- Contact links -->
         <div class="mt-6 max-w-xs mx-auto lg:mx-0 flex flex-col gap-2">
@@ -65,13 +57,13 @@ const headshotExists = true;
         <div class="space-y-6 text-slate-600 leading-relaxed">
 
           <p>
-            I've been a writer (nearly) my entire life. I was the kid who read the dictionary and thesaurus for fun and wrote chaptered novels
-            when a short story was the assignment. Eventually my love of words shaped my career as a Security Specialist because documentation wasn't a maligned side task, it was my bread and butter.
+            I’ve been a writer (nearly) my entire life. I was the kid who read the dictionary and thesaurus for fun
+            and turned short-story assignments into chaptered novels. Eventually my love of words shaped my career as a Security Specialist. Documentation wasn’t a maligned side task. It was my bread and butter.
           </p>
 
           <p>
             For years, I translated deeply technical concepts into clear prose: passkeys, zero-knowledge architecture,
-            the principle of least privilege, quantum threats to modern authentication. I became very good at making
+            the principle of least privilege, quantum threats to modern authentication. I built a career on making
             difficult concepts accessible.
           </p>
 
@@ -80,13 +72,28 @@ const headshotExists = true;
           </p>
 
           <p>
-            Now I'm building the systems I used to
-            explain. I write R, Markdown, and Go. I'm designing CI/CD pipelines and deploying on AWS. I think about
-            authentication flows not just as a writer documenting them, but as an engineer responsible for them.
+            Now I build the systems I used to explain. The tools shifted from R and Markdown to Go, CI/CD
+            pipelines, and AWS. And now I think about a system not just as the writer documenting it, but as
+            the engineer responsible for it.
           </p>
 
           <p>
-            I live in Ontario, Canada with my son and our rescued bully, Sky.
+            Lately my work is mostly AI security engineering: multi-model pipelines that review code for
+            vulnerabilities, and the compressed maps that let them reason about a codebase too large to fit in
+            any context window. Part of that is designing around nondeterminism, because models rarely produce
+            the same output twice.
+          </p>
+
+          <p>
+            I’m a skeptic by training and temperament, which turns out to be the right disposition for
+            this work. Confidence and correctness are not the same thing, and models are remarkably bad at telling
+            them apart. So I build the adversarial checks, the second opinions, and the audit trails, because
+            AI has made me faster, but it has never once replaced my judgment. I wrote more about that on
+            <a href="/blog/my-complicated-relationship-with-ai" class="text-blue-600 hover:text-blue-500 underline underline-offset-2 transition-colors">my blog.</a>
+          </p>
+
+          <p>
+            I live in Ontario, Canada, with my son and our rescued bully, Sky.
           </p>
 
         </div>
