@@ -9,16 +9,31 @@ import Layout from '../../layouts/Layout.astro';
     <div class="max-w-5xl mx-auto px-6 py-16">
       <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-3">Portfolio</p>
       <h1 class="text-4xl font-bold mb-4">Engineering</h1>
-      <p class="text-lg text-slate-400 max-w-2xl">
+      <p class="text-lg text-slate-400 max-w-2xl mb-8">
         Building tools and platforms at the intersection of security and user experience.
       </p>
+      <nav aria-label="Projects on this page" class="flex flex-wrap gap-2">
+        {[
+          { label: "AI review pipeline", href: "#sage" },
+          { label: "White paper platform", href: "#whitepaper" },
+          { label: "Findings review", href: "#findings-review" },
+        ].map((item) => (
+          <a
+            href={item.href}
+            class="group font-mono text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md hover:bg-slate-700 hover:text-white transition-colors"
+          >
+            {item.label}
+            <span class="text-slate-500 group-hover:text-amber-400 transition-colors">↓</span>
+          </a>
+        ))}
+      </nav>
     </div>
   </div>
 
   <div class="max-w-5xl mx-auto px-6 py-16">
 
     <!-- Case study: SAGE -->
-    <article class="mb-8 border border-slate-200 rounded-2xl overflow-hidden">
+    <article id="sage" class="mb-8 border border-slate-200 rounded-2xl overflow-hidden scroll-mt-24">
 
       <!-- Card header -->
       <div class="bg-slate-900 px-8 py-10 text-white">
@@ -138,7 +153,7 @@ import Layout from '../../layouts/Layout.astro';
     </article>
 
     <!-- Case study: Whitepaper platform -->
-    <article class="mb-8 border border-slate-200 rounded-2xl overflow-hidden">
+    <article id="whitepaper" class="mb-8 border border-slate-200 rounded-2xl overflow-hidden scroll-mt-24">
 
       <!-- Card header -->
       <div class="bg-slate-900 px-8 py-10 text-white">
@@ -230,17 +245,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </article>
 
-    <!-- Coming soon: triage tool -->
-    <article class="border border-dashed border-slate-300 rounded-2xl px-8 py-10">
+    <!-- Coming soon: findings review console -->
+    <article id="findings-review"class="border border-dashed border-slate-300 rounded-2xl px-8 py-10 scroll-mt-24">
       <p class="font-mono text-xs text-slate-600 uppercase tracking-widest mb-3">In progress</p>
-      <h2 class="text-xl font-bold text-slate-900 mb-3">Vulnerability Triage Application</h2>
+      <h2 class="text-xl font-bold text-slate-900 mb-3">Findings Review Console</h2>
       <p class="text-slate-500 leading-relaxed max-w-2xl">
-        When my team couldn’t find a tool that properly addressed its vulnerability intake and management needs, I decided to build one. An internal React/Go application that’s helping engineers triage vulnerability findings.
-        It’s reducing noise, surfacing signal, and shortening the time from detection to decision.
-        More details coming soon.
+        When my team couldn’t find a tool that properly addressed its vulnerability intake and management needs, I built one.
+        It’s an internal React/Go application for triaging vulnerability findings, and I’m now repurposing it to grade the
+        output of the AI-powered security review pipeline. More details coming soon.
       </p>
       <div class="flex flex-wrap gap-2 mt-5">
-        {["Go", "AWS", "In progress"].map((tag) => (
+        {["React", "Go", "AWS", "In progress"].map((tag) => (
           <span class="font-mono text-xs bg-slate-50 text-slate-400 border border-slate-200 px-2.5 py-1 rounded-md">{tag}</span>
         ))}
       </div>

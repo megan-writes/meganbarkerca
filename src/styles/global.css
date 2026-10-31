@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 body { font-family: 'Inter', sans-serif; }
+
+/* Smooth in-page jumps (e.g. Engineering project links), skipped for users who prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 .font-mono { font-family: 'JetBrains Mono', monospace; }
 
 /* Blog post prose styles — kept here (not in BlogPost.astro <style>) to avoid CSP inline-style block */
